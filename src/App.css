@@ -25,7 +25,7 @@ body{
 .alltodos{
   margin-top: 12px;
   margin: 12px;
-  margin-left: 15%;
+  margin-left: 13%;
   padding: 7px;
     
   color: white;
@@ -37,8 +37,19 @@ body{
   justify-content: space-between;
 }
 .alltodos li{
+  width: 120%;
   height: 50px;
   background-color: #343a40;
   border-radius: 12px;
   margin: 3px;
+}
+.alltodos li button{
+    margin-right: 12px;
+    font-size: 12px;
+}
+.alltodos li span{
+  margin-left: 12px;
+}
+.btn1{
+  margin-left: 3px;
 }

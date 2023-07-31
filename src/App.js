@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddTodoAction, RemoveTodoAction } from './Components/Action/Action';
 
 function App() {
-  const [todo, setTodo]= useState();
+  const [todo, setTodo]= useState("");
   
   const dispatch = useDispatch()
   
@@ -15,7 +15,7 @@ function App() {
   const handleSubmit =(e)=>{
     e.preventDefault();
     dispatch(AddTodoAction(todo))
-    setTodo()    
+    setTodo("")
   }
 
   const removerHandler=(t)=>{
@@ -26,8 +26,8 @@ function App() {
       <h1 className='d-flex '>ToDo App</h1>
       
       <form onSubmit={handleSubmit}>
-      <input className='bg-transparent' placeholder='Enter item'  onChange={(e)=>setTodo(e.target.value)}/>
-      <button className='btn btn-dark'>Add</button>
+      <input className='bg-transparent' value={todo} placeholder='Enter item'  onChange={(e)=>setTodo(e.target.value)}/>
+      <button className='btn1 btn btn-dark'>Add</button>
       </form>
       <ul className='alltodos'>
       {todos&&todos.map((t)=>(
@@ -38,7 +38,7 @@ function App() {
       ))}
       
       </ul>
-      {JSON.stringify(todo)}
+      {/* {JSON.stringify(todo)} */}
     </div>
     
   );
