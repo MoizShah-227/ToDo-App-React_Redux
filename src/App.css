@@ -1,0 +1,44 @@
+body{
+  background-color: #343a40;
+  color: white;
+}
+.container{
+  /* color: #343a40; */
+  background-color: #f3aa4e;
+  width: 50%;
+  color: #343a40;
+}
+.container h1{
+  display: flex;
+  justify-content: center;
+}
+.container form{
+  display: flex;
+  justify-content: center;
+}
+.container form input {
+  border-color: #343a40;
+  color: white;
+  width:60%;
+  padding: 7px;
+}
+.alltodos{
+  margin-top: 12px;
+  margin: 12px;
+  margin-left: 15%;
+  padding: 7px;
+    
+  color: white;
+  width: 60%;
+}
+.alltodos .todo-list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.alltodos li{
+  height: 50px;
+  background-color: #343a40;
+  border-radius: 12px;
+  margin: 3px;
+}
