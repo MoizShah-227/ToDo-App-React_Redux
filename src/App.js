@@ -1,46 +1,46 @@
-import { useState } from 'react';
-import './App.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { AddTodoAction, RemoveTodoAction } from './Components/Action/Action';
-
+import {useState} from 'react';
+import { Form } from "./components/Form";
+import { Todos } from "./components/Todos";
+import {useDispatch, useSelector} from 'react-redux';
+import {deleteAll} from './redux/todoapp/actions';
+import Header from './Header';
 function App() {
-  const [todo, setTodo]= useState("");
-  
-  const dispatch = useDispatch()
-  
-  const Todo = useSelector((state)=>state.Todo)
-  
-  const {todos} =Todo;
+  // dispatch function to dispatch an action
+  const dispatch = useDispatch();
 
-  const handleSubmit =(e)=>{
-    e.preventDefault();
-    dispatch(AddTodoAction(todo))
-    setTodo("")
+  // getting todos state for conditional rendering
+  const todos = useSelector((state)=>state.operationsReducer);
+
+  // update form visibility state
+  const [editFormVisibility, setEditFormVisibility]=useState(false);
+
+  // editTodo state
+  const [editTodo, setEditTodo]=useState('');
+
+  // this function will trigger when someone clicks the edit icon
+  const handleEditClick=(todo)=>{
+    setEditFormVisibility(true);
+    setEditTodo(todo);
   }
 
-  const removerHandler=(t)=>{
-    dispatch(RemoveTodoAction(t))
+  const cancelUpdate=()=>{
+    setEditFormVisibility(false);
   }
-  return (
-    <div className='container'>
-      <h1 className='d-flex '>ToDo App</h1>
-      
-      <form onSubmit={handleSubmit}>
-      <input className='bg-transparent' value={todo} placeholder='Enter item'  onChange={(e)=>setTodo(e.target.value)}/>
-      <button className='btn1 btn btn-dark'>Add</button>
-      </form>
-      <ul className='alltodos'>
-      {todos&&todos.map((t)=>(
-         <li key={t.id} className='todo-list'>
-          <span>{t.todo} </span>
-          <button onClick={()=>removerHandler(t)} className='btn btn-danger'>Delete</button>
-        </li>
-      ))}
-      
-      </ul>
-      {/* {JSON.stringify(todo)} */}
+
+    return (
+    <div className="wrapper">
+      <br></br>
+      <Header/>
+      <div className='contain-center'>
+      <Form editFormVisibility={editFormVisibility} editTodo={editTodo}
+      cancelUpdate={cancelUpdate}/>
+      <Todos handleEditClick={handleEditClick} editFormVisibility={editFormVisibility}/>
+      {todos.length > 1 && (
+        <button className='btn btn-danger btn-md delete-all'
+        onClick={()=>dispatch(deleteAll())}>DELETE ALL</button>
+      )}
+      </div>
     </div>
-    
   );
 }
 
